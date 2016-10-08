@@ -35,7 +35,7 @@ describe("Chapter 7 Question", function () {
    it("replaces and removes accurately", function () {
      let arr = ['a', 'c', 'd', 'b', 'b', 'c', 'a', 'c'];
      replaceAndRemove(arr);
-     expect(arr).to.equal(['d', 'd', 'c', 'd', 'c', 'd', 'd', 'c'])
+     expect(arr).to.equal(['d', 'd', 'c', 'd', 'c', 'd', 'd', 'c']);
    });
   });
 
