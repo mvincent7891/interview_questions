@@ -54,9 +54,10 @@ describe("Chapter 8 Question", function () {
    });
 
    it("handles indices outside the list length", function () {
-     (function() {
+     const fn = () => {
        reverseSublist(list, 4, 10);
-      }).should.not.throw();
+     };
+     expect(fn).to.not.throw();
    });
 
    it("correctly reverses a sublist", function () {
