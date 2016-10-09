@@ -22,11 +22,19 @@ describe("Chapter 6 Question", function () {
       expect(result).to.equal([1, 4]);
     });
 
-    it("picks the right days", function() {
-      var arr  = [13, 7, 12, 5, 13];
-      var result = stockPicker(arr);
-      expect(result).to.equal([3, 4]);
-    });
+    var tests = [
+      {args: [13, 7, 12, 5, 13], expected: [3, 4]},
+      {args: [5, 4, 3, 8, 20], expected: [2, 4]},
+      {args: [1, 2, 3, 4], expected: [0, 3]}
+    ]
+
+    tests.forEach(test => {
+      it('picks the right days', () => {
+        let result = stockPicker(test.args);
+        expect(result).to.equal(test.expected);
+      });
+    })
+
   });
 
   describe("6.11 #randomSubsets", function () {
