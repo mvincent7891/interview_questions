@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import { evalRPN, isWellFormed,
-         treeLevels, TreeNode } from '../lib/ch09.js';
+         treeLevels } from '../lib/ch09.js';
+import { TreeNode } from '../util/tree.js';
 
 describe("Chapter 9 Questions", function () {
 
@@ -16,7 +17,7 @@ describe("Chapter 9 Questions", function () {
     });
 
     it("works with division and negative numbers", function () {
-      let result = evalRPN('-672,6,/,28,/').to.equal(4)
+      let result = evalRPN('-672,6,/,28,/').to.equal(4);
       expect(result).to.equal(-4);
     });
 
