@@ -1,6 +1,6 @@
 // 1. Change chapterNumber below before using
-// 2. Navigate to root directory and execute the following:
-//      node --harmony 'util/test_generator'
+// 2. Navigate to the root directory and execute the following:
+//      babel-node ./util/test_generator.js
 // 3. Uncomment the tests in the newly created file
 
 var writeFile = require('write');
