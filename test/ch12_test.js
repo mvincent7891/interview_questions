@@ -1,38 +1,39 @@
 import { expect } from 'chai';
-import {firstOccurenceNaive, firstOccurenceOptimal, closestRoot, kthLargestInPlace} from '../lib/ch12.js';
+import {firstOccurenceNaive, firstOccurenceOptimal,
+        closestRoot, kthLargestInPlace} from '../lib/ch12.js';
 
-//describe("Chapter 12 Questions", () => {
+describe("Chapter 12 Questions", () => {
 
-//  describe("#firstOccurenceNaive", () => {
+ describe("#firstOccurenceNaive", () => {
 
-//    it("", function () {
+   it("", function () {
 
-//    });
+   });
 
-//  });
+ });
 
-//  describe("#firstOccurenceOptimal", () => {
+ describe("#firstOccurenceOptimal", () => {
 
-//    it("", function () {
+   it("", function () {
 
-//    });
+   });
 
-//  });
+ });
 
-//  describe("#closestRoot", () => {
+ describe("#closestRoot", () => {
 
-//    it("", function () {
+   it("", function () {
 
-//    });
+   });
 
-//  });
+ });
 
-//  describe("#kthLargestInPlace", () => {
+ describe("#kthLargestInPlace", () => {
 
-//    it("", function () {
+   it("", function () {
 
-//    });
+   });
 
-//  });
+ });
 
-//});
+});

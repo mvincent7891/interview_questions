@@ -26,20 +26,23 @@ export class Heap {
     if (this.store.length === 0) {
       return null;
     }
-    lastIdx = this.store.length - 1;
-    this.store[0], this.store[lastIdx] = this.store[lastIdx], this.store[0];
-    returnElement = this.store.pop;
+    let lastIdx = this.store.length - 1;
+    [this.store[0], this.store[lastIdx]] = [this.store[lastIdx], this.store[0]];
+    let returnElement = this.store.pop;
     heapifyDown();
     return returnElement;
   }
 
   _parentIdx(idx) {
-    parent = idx === 0 ? (null) : ((idx - 1) / 2)
+    let parent = idx === 0 ? (null) : ((idx - 1) / 2)
     return parent;
   }
 
   _childIndices(idx) {
-
+    let rawIndices = [ 2 * idx + 1, 2 * idx + 2 ];
+    return rawIndices.filter(idx2 => {
+      idx2 < this.store.length
+    });
   }
 
   _heapifyUp() {
@@ -50,17 +53,6 @@ export class Heap {
 
   }
 }
-
-class Heap
-
-  def parent_idx(idx)
-    idx == 0 ? nil : (idx - 1) / 2
-  end
-
-  def child_indices(idx)
-    indices = [2*idx + 1, 2*idx + 2]
-    indices.select{|i| i < @store.length}
-  end
 
   def heapify_up
     curr_idx = @store.length - 1
