@@ -10,7 +10,7 @@ export class Heap {
       } else {
         return 1;
       }
-    }
+    };
   }
 
   peek () {
@@ -18,8 +18,8 @@ export class Heap {
   }
 
   insert (element) {
-    this.store.push(el);
-    this.heapifyUp();
+    this.store.push(element);
+    this._heapifyUp();
   }
 
   remove () {
@@ -29,59 +29,50 @@ export class Heap {
     let lastIdx = this.store.length - 1;
     [this.store[0], this.store[lastIdx]] = [this.store[lastIdx], this.store[0]];
     let returnElement = this.store.pop;
-    heapifyDown();
+    this._heapifyDown();
     return returnElement;
   }
 
-  _parentIdx(idx) {
-    let parent = idx === 0 ? (null) : ((idx - 1) / 2)
+  _parentIdx (idx) {
+    let parent = idx === 0 ? (null) : ((idx - 1) / 2);
     return parent;
   }
 
-  _childIndices(idx) {
+  _childIndices (idx) {
     let rawIndices = [ 2 * idx + 1, 2 * idx + 2 ];
     return rawIndices.filter(idx2 => {
-      idx2 < this.store.length
+      idx2 < this.store.length;
     });
   }
 
-  _heapifyUp() {
-
+  _heapifyUp () {
+    let store = this.store;
+    let currentIdx = store.length - 1;
+    let parentIdx = this._parentIdx(currentIdx);
+    while (parentIdx && this.prc(store[parentIdx], store[currentIdx]) === 1) {
+      [store[parentIdx], store[currentIdx]] = [store[currentIdx], store[parentIdx]];
+      currentIdx = parentIdx;
+      parentIdx = this._parentIdx(parentIdx);
+    }
   }
 
-  _heapifyDown() {
+  _heapifyDown () {
+    let store = this.store;
+    let currentIdx = 0;
+    let childIndices = this._childIndices(currentIdx);
+    while (childIndices.length > 0) {
+      let children = childIndices.map(idx => store[idx]);
+      let minChild = ( children.length === 1 ||
+        this.prc(children[0], children[1]) < 0 ) ? children[0] : children[1];
+      let minChildIdx = minChild === children[0] ? childIndices[0] : childIndices[1];
 
+      if (this.prc(store[currentIdx], minChild) > 0) {
+        [store[currentIdx], store[minChildIdx]] = [store[minChildIdx], store[currentIdx]];
+        currentIdx = minChildIdx;
+        childIndices = this._childIndices(currentIdx);
+      } else {
+        break;
+      }
+    }
   }
 }
-
-  def heapify_up
-    curr_idx = @store.length - 1
-    parent_i = parent_idx(curr_idx)
-
-
-    while  parent_i && @prc.call(@store[parent_i], @store[curr_idx]) == 1
-      @store[parent_i], @store[curr_idx] = @store[curr_idx], @store[parent_i]
-      @curr_idx = parent_i
-      parent_i = parent_idx(parent_i)
-    end
-  end
-
-  def heapify_down
-    curr_idx = 0
-    child_idx = child_indices(curr_idx)
-
-    while child_idx.length > 0
-      children = child_idx.map{|i| @store[i]}
-      min_child = ( children.length == 1 || @prc.call(children[0], children[1] < 0) ) ? children[0] : children[1]
-      min_child_idx = min_child == children[0] ? child_idx[0] : child_idx[1]
-
-      if @prc.call(@store[curr_idx], min_child) > 0
-        @store[curr_idx], @store[min_child_idx] = @store[min_child_idx], @store[curr_idx]
-        curr_idx = min_child_idx
-        child_idx = child_indices(curr_idx)
-      else
-        break
-      end
-    end
-  end
-end
