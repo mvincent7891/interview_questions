@@ -16,7 +16,7 @@ describe("Chapter 11 Questions", () => {
 
  });
 
- describe("#kthLargest", () => {
+ describe("11.4 #kthLargest", () => {
 
    var tests = [
      {arr: [1,2,3,4,5,6,7], k: 3, nth:  '3rd', expected: 5},

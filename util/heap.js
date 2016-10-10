@@ -1,24 +1,24 @@
-
 export class Heap {
   constructor () {
     this.store = [];
-    this.prc = (a, b) => {
-      if (a === b) {
-        return 0;
-      } else if (a < b) {
+  }
+
+  prc (a, b) {
+  	if (a === b) {
+  	  return 0;
+  	} else if (a < b) {
         return -1;
-      } else {
-        return 1;
-      }
-    };
+  	} else {
+  	  return 1;
+  	}
   }
 
   peek () {
-    return this.store[this.store.length - 1];
+    return this.store[0];
   }
 
-  insert (element) {
-    this.store.push(element);
+  insert (value) {
+    this.store.push(value);
     this._heapifyUp();
   }
 
@@ -34,7 +34,7 @@ export class Heap {
   }
 
   _parentIdx (idx) {
-    let parent = idx === 0 ? (null) : ((idx - 1) / 2);
+    let parent = idx === 0 ? (null) : Math.floor(((idx - 1) / 2));
     return parent;
   }
 
@@ -49,7 +49,7 @@ export class Heap {
     let store = this.store;
     let currentIdx = store.length - 1;
     let parentIdx = this._parentIdx(currentIdx);
-    while (parentIdx && this.prc(store[parentIdx], store[currentIdx]) === 1) {
+    while (parentIdx >= 0 && this.prc(store[parentIdx], store[currentIdx]) < 0) {
       [store[parentIdx], store[currentIdx]] = [store[currentIdx], store[parentIdx]];
       currentIdx = parentIdx;
       parentIdx = this._parentIdx(parentIdx);
