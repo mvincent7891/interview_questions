@@ -1,57 +1,67 @@
 import { expect } from 'chai';
-import {firstOccurenceNaive, firstOccurenceOptimal,
-        closestRoot, kthLargestInPlace} from '../lib/ch12.js';
+import { firstOccurrence, closestRoot,
+        kthLargestInPlace } from '../lib/ch12.js';
+import { shuffle } from '../util/shuffle.js';
 
 describe("Chapter 12 Questions", () => {
 
- describe("12.1 #firstOccurenceNaive", () => {
+  describe("12.1 #firstOccurence", () => {
 
-   it("returns the index of the first instance of an elemnt in a sorted array", function () {
+    var tests = [
+      {arr: [1, 2, 2, 2, 2, 3, 4, 6], target: 2, expected: 1},
+      {arr: [1, 2, 2, 2, 2, 3, 4, 6], target: 3, expected: 5},
+      {arr: [1, 2, 2, 2, 2, 3, 4, 6], target: 1, expected: 0},
+      {arr: [1, 1, 1, 1, 1, 1, 1, 8], target: 8, expected: 7}
+    ];
 
-   });
+    test.forEach(test => {
+      it("returns the index of the first instance of an element in a sorted array", function () {
+        let result = firstOccurrence(test.arr, test.target);
+        expect(result).to.equal(test.expected);
+      });
+    });
 
-   it("returns 0 when the first occurrence is the first element", function () {
+    it("returns null when the element is not found", function () {
+      let result = firstOccurrence([0,1,3,4,5,6,7], 2);
+      expect(result).to.not.equal(result);
+    });
 
-   });
+  });
 
-   it("returns null when the element is not found", function () {
+  describe("12.4 #closestRoot", () => {
 
-   });
+    it("returns the closest root for a perfect square", function () {
 
- });
+    });
 
- describe("12.1 #firstOccurenceOptimal", () => {
+    it("works for a small perfect root", function () {
 
-// Duplicate above
+    });
 
- });
+    it("works for a non perfect square", function () {
 
- describe("12.4 #closestRoot", () => {
+    });
 
-   it("returns the closest root for a perfect square", function () {
+  });
 
-   });
+  describe("12.8 #kthLargestInPlace", () => {
+    let original = Array.from({length: 10}, (k,v) => k);
+    let tests = [];
+    for (let num of original) {
+      let arr = original.slice(0);
+      shuffle(Array);
+      let k = 10 - num;
+      let expected = num;
+      tests.push({arr, k, expected});
+    }
 
-   it("works for a small perfect root", function () {
+    test.forEach(test => {
+      it(`picks the kth largest element when k is ${test.k}`, function () {
+        let result = kthLargestInPlace(test.arr, test.k);
+        expect(result).to.equal(test.expected);
+      });
+    });
 
-   });
-
-   it("works for a non perfect square", function () {
-
-   });
-
- });
-
- describe("12.8 #kthLargestInPlace", () => {
-   // Change to suite of tests dynamically generated
-   it("picks the kth largest element", function () {
-
-   });
-
-   it("picks the largest element", function () {
-
-   });
-
- });
+  });
 
 });
