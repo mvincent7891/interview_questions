@@ -18,7 +18,7 @@ const insertDescribe = (string, name) => {
   return string;
 };
 
-let chapterNumber = 15;
+let chapterNumber = 16;
 
 if (!chapterNumber) {
   throw(`Change the chapter number, foo!`);
