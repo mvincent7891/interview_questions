@@ -14,7 +14,7 @@ describe("Chapter 12 Questions", () => {
       {arr: [1, 1, 1, 1, 1, 1, 1, 8], target: 8, expected: 7}
     ];
 
-    test.forEach(test => {
+    tests.forEach(test => {
       it("returns the index of the first instance of an element in a sorted array", function () {
         let result = firstOccurrence(test.arr, test.target);
         expect(result).to.equal(test.expected);
@@ -28,34 +28,34 @@ describe("Chapter 12 Questions", () => {
 
   });
 
-  describe("12.4 #closestRoot", () => {
-
-    it("returns the closest root for a perfect square", function () {
-
-    });
-
-    it("works for a small perfect root", function () {
-
-    });
-
-    it("works for a non perfect square", function () {
-
-    });
-
-  });
+  // describe("12.4 #closestRoot", () => {
+  //
+  //   it("returns the closest root for a perfect square", function () {
+  //
+  //   });
+  //
+  //   it("works for a small perfect root", function () {
+  //
+  //   });
+  //
+  //   it("works for a non perfect square", function () {
+  //
+  //   });
+  //
+  // });
 
   describe("12.8 #kthLargestInPlace", () => {
-    let original = Array.from({length: 10}, (k,v) => k);
+    let original = Array.from({length: 10}, (v, k) => k);
     let tests = [];
     for (let num of original) {
       let arr = original.slice(0);
-      shuffle(Array);
+      shuffle(arr);
       let k = 10 - num;
       let expected = num;
-      tests.push({arr, k, expected});
+      tests.push({arr: arr, k: k, expected: expected});
     }
 
-    test.forEach(test => {
+    tests.forEach(test => {
       it(`picks the kth largest element when k is ${test.k}`, function () {
         let result = kthLargestInPlace(test.arr, test.k);
         expect(result).to.equal(test.expected);

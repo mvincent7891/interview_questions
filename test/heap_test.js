@@ -20,7 +20,7 @@ describe("Testing heap", () => {
       newHeap.insert(4);
       newHeap.insert(0);
       let result = newHeap.peek();
-      expect(result).to.equal(1);
+      expect(result).to.equal(4);
     });
 
   });

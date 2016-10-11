@@ -25,7 +25,7 @@ describe("Chapter 11 Questions", () => {
    ];
 
    tests.forEach(test => {
-     it(`picks the ${test.nth} largest element from ${test.arr.length} elements`, () => {
+     it(`picks the ${test.nth} largest element from a ${test.arr.length} element array`, () => {
        let result = kthLargest(test.args, test.k);
        expect(result).to.equal(test.expected);
      });
