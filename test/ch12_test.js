@@ -28,21 +28,24 @@ describe("Chapter 12 Questions", () => {
 
   });
 
-  // describe("12.4 #closestRoot", () => {
-  //
-  //   it("returns the closest root for a perfect square", function () {
-  //
-  //   });
-  //
-  //   it("works for a small perfect root", function () {
-  //
-  //   });
-  //
-  //   it("works for a non perfect square", function () {
-  //
-  //   });
-  //
-  // });
+  describe("12.4 #closestRoot", () => {
+
+    it("returns the closest root for a perfect square", function () {
+      let result = closestRoot(16);
+      expect(result).to.equal(4);
+    });
+
+    it("works for a small perfect root", function () {
+      let result = closestRoot(4);
+      expect(result).to.equal(2);
+    });
+
+    it("works for a non perfect square", function () {
+      let result = closestRoot(17);
+      expect(result).to.equal(4);
+    });
+
+});
 
   describe("12.8 #kthLargestInPlace", () => {
     let original = Array.from({length: 10}, (v, k) => k);
