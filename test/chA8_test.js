@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {countingSort, radixSort, bucketSort} from '../lib/chA8.js';
-import { shuffle } from '../util/shuffle.js'
+import { shuffle } from '../util/shuffle.js';
 
 describe("Chapter A8 Questions", () => {
 
