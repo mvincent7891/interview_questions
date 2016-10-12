@@ -33,3 +33,7 @@ $ npm test ./test/ch12_test.js
 $ babel-node ./util/test_generator.js
 ```
 - You'll find your new test file in the `./test` folder. Just uncomment the body and you're ready to write tests!
+
+### Problem Sources
+- Problems in `ch##.js` files are sourced from Elements of Programming Interviews
+- Problems in `chA#.js` files are sourced from Introduction to Algorithms (Cormen)
