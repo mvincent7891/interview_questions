@@ -28,8 +28,20 @@ describe("Chapter A8 Questions", () => {
 
   describe("#radixSort", () => {
 
-    it("", function () {
+    it("sorts a small list of numbers", function () {
+      let original = [123, 124, 125, 223, 224, 225, 323, 324, 325];
+      let unsorted = original.slice(0);
+      shuffle(unsorted);
+      let sorted = radixSort(unsorted, 3);
+      expect(sorted).to.equal(original);
+    });
 
+    it("sorts a larger list of numbers", function () {
+      let original = Array.from({length: 900}, (v,k) => k + 100);
+      let unsorted = original.slice(0);
+      shuffle(unsorted);
+      let sorted = radixSort(unsorted, 3);
+      expect(sorted).to.equal(original);
     });
 
   });
