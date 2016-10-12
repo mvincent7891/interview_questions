@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import {countingSort, radixSort, bucketSort} from '../lib/chA8.js';
 import { shuffle } from '../util/shuffle.js';
 
+
 describe("Chapter A8 Questions", () => {
 
   describe("#countingSort", () => {
@@ -48,8 +49,21 @@ describe("Chapter A8 Questions", () => {
 
   describe("#bucketSort", () => {
 
-    it("", function () {
+    it("sorts a small list of floats", function () {
+      let original = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7];
+      let unsorted = original.slice(0);
+      shuffle(unsorted);
+      let sorted = bucketSort(unsorted);
+      expect(sorted).to.equal(original);
+    });
 
+    it("sorts a small list of floats", function () {
+      let original = [0.1, 0.15, 0.2, 0.23, 0.3, 0.35, 0.4,
+                      0.5, 0.6, 0.7, 0.81, 0.87, 0.92, 0.97];
+      let unsorted = original.slice(0);
+      shuffle(unsorted);
+      let sorted = bucketSort(unsorted);
+      expect(sorted).to.equal(original);
     });
 
   });

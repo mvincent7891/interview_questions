@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { mergeLists, reverseSublist,
-         Link, LinkedList } from '../lib/ch08.js';
+import { mergeLists, reverseSublist } from '../lib/ch08.js';
+import { Link, LinkedList } from '../util/list.js';
 
 describe("Chapter 8 Question", function () {
 
