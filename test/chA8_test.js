@@ -11,8 +11,8 @@ describe("Chapter A8 Questions", () => {
       let unsorted = [0, 3, 2, 4, 1, 5, 6, 7];
       let sorted, counting;
       [sorted, counting] = countingSort(unsorted);
-      expect(sorted).to.equal([0, 1, 2, 3, 4, 5, 6, 7]);
-      expect(counting).to.equal([1, 2, 3, 4, 5, 6, 7, 8]);
+      expect(sorted).to.eql([0, 1, 2, 3, 4, 5, 6, 7]);
+      expect(counting).to.eql([1, 2, 3, 4, 5, 6, 7, 8]);
     });
 
     it("handles a more complicated case", function () {
@@ -21,8 +21,8 @@ describe("Chapter A8 Questions", () => {
       shuffle(unsorted);
       let sorted, counting;
       [sorted, counting] = countingSort(unsorted);
-      expect(sorted).to.equal(original);
-      expect(counting).to.equal([2, 4, 7, 7, 9, 10, 10, 11, 11, 11, 11, 12]);
+      expect(sorted).to.eql(original);
+      expect(counting).to.eql([2, 4, 7, 7, 9, 10, 10, 11, 11, 11, 11, 12]);
     });
 
   });
@@ -34,7 +34,7 @@ describe("Chapter A8 Questions", () => {
       let unsorted = original.slice(0);
       shuffle(unsorted);
       let sorted = radixSort(unsorted, 3);
-      expect(sorted).to.equal(original);
+      expect(sorted).to.eql(original);
     });
 
     it("sorts a larger list of numbers", function () {
@@ -42,7 +42,7 @@ describe("Chapter A8 Questions", () => {
       let unsorted = original.slice(0);
       shuffle(unsorted);
       let sorted = radixSort(unsorted, 3);
-      expect(sorted).to.equal(original);
+      expect(sorted).to.eql(original);
     });
 
   });
@@ -54,7 +54,7 @@ describe("Chapter A8 Questions", () => {
       let unsorted = original.slice(0);
       shuffle(unsorted);
       let sorted = bucketSort(unsorted);
-      expect(sorted).to.equal(original);
+      expect(sorted).to.eql(original);
     });
 
     it("sorts a small list of floats", function () {
@@ -63,7 +63,7 @@ describe("Chapter A8 Questions", () => {
       let unsorted = original.slice(0);
       shuffle(unsorted);
       let sorted = bucketSort(unsorted);
-      expect(sorted).to.equal(original);
+      expect(sorted).to.eql(original);
     });
 
   });

@@ -10,14 +10,14 @@ describe("Chapter A32 Questions", () => {
       let pattern = 'def';
       let text = 'abcdefghi';
       let result = naiveMatch(pattern, text);
-      expect(result).to.equal([3]);
+      expect(result).to.eql([3]);
     });
 
     it("finds multiple matches", function () {
       let pattern = 'bcd';
       let text = 'abcdefabcdef';
       let result = naiveMatch(pattern, text);
-      expect(result).to.equal([1, 7]);
+      expect(result).to.eql([1, 7]);
     });
 
   });

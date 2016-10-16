@@ -8,13 +8,13 @@ describe("Chapter 16 Questions", () => {
     it("solves with 3 rings", function () {
       let pegs = [[3, 2, 1], [], []];
       hanoi(3, pegs, 0, 2, 1);
-      expect(pegs).to.equal([[], [], [3,2,1]]);
+      expect(pegs).to.eql([[], [], [3,2,1]]);
     });
 
     it("solves with 5 rings", function () {
       let pegs = [[5, 4, 3, 2, 1], [], []];
       hanoi(5, pegs, 0, 2, 1);
-      expect(pegs).to.equal([[], [], [5, 4, 3, 2, 1]]);
+      expect(pegs).to.eql([[], [], [5, 4, 3, 2, 1]]);
     });
 
   });

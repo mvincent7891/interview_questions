@@ -8,8 +8,8 @@ describe("Chapter 6 Question", function () {
     it("works with an example case", function() {
       var arr  = [6, 3, 3, 4, 2, 1, 2, 2, 3, 8, 7, 6, 5, 3];
       var result = dutchFlag(arr, 1);
-      expect(result[4]).to.equal(3);
-      expect(result[7]).to.equal(3);
+      expect(result[4]).to.eql(3);
+      expect(result[7]).to.eql(3);
       expect(result[0]).to.be.below(3);
       expect(result[arr.length - 1]).to.be.above(3);
     });
@@ -19,7 +19,7 @@ describe("Chapter 6 Question", function () {
     it("does not settle for a local max", function() {
       var arr  = [13, 7, 12, 8, 13];
       var result = stockPicker(arr);
-      expect(result).to.equal([1, 4]);
+      expect(result).to.eql([1, 4]);
     });
 
     var tests = [
@@ -31,7 +31,7 @@ describe("Chapter 6 Question", function () {
     tests.forEach(test => {
       it('picks the right days', () => {
         let result = stockPicker(test.args);
-        expect(result).to.equal(test.expected);
+        expect(result).to.eql(test.expected);
       });
     });
 
@@ -39,16 +39,16 @@ describe("Chapter 6 Question", function () {
 
   describe("6.11 #randomSubsets", function () {
     it("generates subsets of the appropriate length", function () {
-      let arr = Array.from({length: 100}, (k,v) => k);
+      let arr = Array.from({length: 100}, (v, k) => k);
       let result = randomSubsets(arr, 10);
-      expect(result.length).to.equal(10);
+      expect(result.length).to.eql(10);
     });
 
-    it("(usually) does not generate the same subsetfor identical inputs", function() {
-      let arr1 = Array.from({length: 100}, (k,v) => k);
-      let result1 = randomSubsets(arr1, 10);
-      let result2 = randomSubsets(arr1, 10);
-      expect(result1).to.not.equal(result2);
+    it("(usually) does not generate the same subset for identical inputs", function() {
+      let arr1 = Array.from({length: 100}, (v, k) => k);
+      let result1 = randomSubsets(arr1, 5);
+      let result2 = randomSubsets(arr1, 5);
+      expect(result1).to.not.eql(result2);
     });
   });
 
@@ -56,13 +56,13 @@ describe("Chapter 6 Question", function () {
     it("works with a 3x3 array", function () {
       let matrix = [[1,2,3],[4,5,6],[7,8,9]];
       let result = spiralOrdering(matrix);
-      expect(result).to.equal([1,2,3,6,9,8,7,4,5]);
+      expect(result).to.eql([1,2,3,6,9,8,7,4,5]);
     });
 
     it("works with a 3x3 array", function () {
       let matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]];
       let result = spiralOrdering(matrix);
-      expect(result).to.equal([1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10]);
+      expect(result).to.eql([1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10]);
     });
   });
 

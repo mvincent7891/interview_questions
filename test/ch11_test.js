@@ -11,7 +11,7 @@ describe("Chapter 11 Questions", () => {
      let c = [0];
 
      let result = sortedArrSort(a, b, c);
-     expect(result).to.equal([0,1,2,3,4,5,6]);
+     expect(result).to.eql([0,1,2,3,4,5,6]);
    });
 
  });

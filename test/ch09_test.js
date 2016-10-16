@@ -47,16 +47,16 @@ describe("Chapter 9 Questions", function () {
       b.right = c;
 
       let result = treeLevels(a);
-      expect(result).to.equal([[3],[1],[4]]);
+      expect(result).to.eql([[3],[1],[4]]);
     });
 
     it("works with a full tree", function () {
-      let a = new TreeNode(314)
-      let b = new TreeNode(6)
-      let c = new TreeNode(6)
-      let d = new TreeNode(5)
-      let e = new TreeNode(7)
-      let f = new TreeNode(8)
+      let a = new TreeNode(314);
+      let b = new TreeNode(6);
+      let c = new TreeNode(6);
+      let d = new TreeNode(5);
+      let e = new TreeNode(7);
+      let f = new TreeNode(8);
 
       a.left = b;
       a.right = c;
@@ -65,7 +65,7 @@ describe("Chapter 9 Questions", function () {
       c.left = f;
 
       let result = treeLevels(a);
-      expect(result).to.equal([[314],[6,6],[5,7,8]])
+      expect(result).to.eql([[314],[6,6],[5,7,8]]);
     });
 
   });

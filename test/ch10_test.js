@@ -27,11 +27,11 @@ describe("Chapter 10 Questions", function () {
       let e = new TreeNode(7);
       let f = new TreeNode(8);
 
-      a.left = b
-      a.right = c
-      b.left = d
-      b.right = e
-      c.left = f
+      a.left = b;
+      a.right = c;
+      b.left = d;
+      b.right = e;
+      c.left = f;
 
       let result = checkBalance(a);
       expect(result).to.be.true;

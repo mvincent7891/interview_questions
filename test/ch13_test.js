@@ -40,7 +40,7 @@ describe("Chapter 13 Questions", () => {
     it("returns the word and closest indices", function () {
       let str = 'all work and no play makes for no work no fun and no results';
       let result = closestRepeat(str);
-      expect(result).to.equal(['no', [7, 9]]);
+      expect(result).to.eql(['no', [7, 9]]);
     });
 
   });
