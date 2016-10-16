@@ -6,8 +6,18 @@ describe("Chapter A32 Questions", () => {
 
   describe("#naiveMatch", () => {
 
-    it("", function () {
+    it("finds a single match", function () {
+      let pattern = 'def';
+      let text = 'abcdefghi';
+      let result = naiveMatch(pattern, text);
+      expect(result).to.equal([3]);
+    });
 
+    it("finds multiple matches", function () {
+      let pattern = 'bcd';
+      let text = 'abcdefabcdef';
+      let result = naiveMatch(pattern, text);
+      expect(result).to.equal([1, 7]);
     });
 
   });
