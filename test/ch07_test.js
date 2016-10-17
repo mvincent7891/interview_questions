@@ -24,10 +24,13 @@ describe("Chapter 7 Question", function () {
 
   describe("7.2 #baseConverter", function() {
    it("converts a binary number to hexadecimal", function() {
-     expect('11111', 2, 16).to.equal('1f');
+     let result = baseConverter('11111', 2, 16);
+     expect(result).to.equal('1F');
    });
+
    it("converts a hexadecimal number to binary", function() {
-     expect('1f', 16, 2).to.equal('11111');
+     let result = baseConverter('1F', 16, 2);
+     expect(result).to.equal('11111');
    });
   });
 

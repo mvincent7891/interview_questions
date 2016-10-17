@@ -48,7 +48,15 @@ export const stringToInt = str => {
 
 // 7.2: Accept a stringified integer, and two bases. Convert the string
 // from the first base to the second. You may want to write some helper
-// methods.
+// methods. The base will be between 2 and 16.
+
+const numToStr = {
+  0: '0', 1: '1', 2: '2', 3: '3', 4: '4', 5: '5', 6: '6', 7: '7',
+  8: '8', 9: '9', 10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'
+};
+
+const strToNum =
+
 
 export const baseConverter = (strNum, b1, b2) => {
 
