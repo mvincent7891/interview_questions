@@ -59,7 +59,7 @@ describe("Chapter 6 Question", function () {
       expect(result).to.eql([1,2,3,6,9,8,7,4,5]);
     });
 
-    it("works with a 3x3 array", function () {
+    it("works with a 4x4 array", function () {
       let matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]];
       let result = spiralOrdering(matrix);
       expect(result).to.eql([1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10]);

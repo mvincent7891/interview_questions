@@ -58,6 +58,33 @@ export const randomSubsets = (array, n) => {
 // 6.17: Accept a matrix (2D array) and return a 1-D array with the
 // elements in clockwise, spiral order
 
-export const spiralOrdering = (matrix) => {
+export const spiralOrdering = matrix => {
+  
+    // 1) Remove first row of matrix and add to result
+    // 2) matrix = counter-clockwise transpose of matrix
+    // 3) Repeat until empty
 
+    let size = matrix[0].length * matrix.length;
+    let spiral = [];
+    let newMatrix = matrix.slice(0);
+    while (spiral.length < size) {
+      spiral = spiral.concat(newMatrix[0]);
+      newMatrix = ccwTranspose(newMatrix.slice(1));
+    }
+    return spiral;
+};
+
+const ccwTranspose = matrix => {
+  if (matrix.length < 1) {
+  	return matrix;
+  }
+  let result = [];
+  for (let i = matrix[0].length - 1; i >= 0; i--) {
+  	let arr = [];
+  	for (let j = 0; j < matrix.length; j++) {
+  		arr.push(matrix[j][i]);
+  	}
+  	result.push(arr);
+  }
+  return result;
 };
