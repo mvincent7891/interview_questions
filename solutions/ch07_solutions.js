@@ -55,16 +55,46 @@ const numToStr = {
   8: '8', 9: '9', 10: 'A', 11: 'B', 12: 'C', 13: 'D', 14: 'E', 15: 'F'
 };
 
-const strToNum =
+const strToNum = invert(numToStr);
 
+const findBase10 = (strNum, b1) => {
+  let digits = strNum.split('');
+  let base10 = 0;
+  let len = digits.length;
+  for (let i = 0; i < len; i++) {
+    base10 += Math.pow(b1, i) * parseInt(strToNum[digits[len - i -1]], 10);
+  }
+  return base10;
+};
 
 export const baseConverter = (strNum, b1, b2) => {
-
+  let current = findBase10(strNum, b1);
+  let result = [];
+  while (current > 0 ) {
+    result.unshift(numToStr[current % b2]);
+    current = Math.floor(current / b2);
+  }
+  return result.join('');
 };
 
 // 7.4: Accept an array of characters. Replace every 'a' with 2 'd's,
-// and remove every 'b'. You should mutate the array.
+// and remove every 'b'.
 
 export const replaceAndRemove = chars => {
-
+  let len = chars.length;
+  let i = 0;
+  while (i < len) {
+    let char = chars[i];
+    if (char === 'a') {
+      chars = chars.slice(0, i).concat(['d', 'd']).concat(chars.slice(i + 1));
+      i += 2;
+      len += 1;
+    } else if (char === 'b') {
+      chars = chars.slice(0, i).concat(chars.slice(i + 1));
+      len -= 1;
+    } else {
+      i += 1;
+    }
+  }
+  return chars;
 };

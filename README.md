@@ -24,6 +24,7 @@ $ npm test ./test/ch12_test.js
 
 ### Automate Test Creation
 The tests in this repo were generated automatically with `./util/test_generator.js`. You can use it by creating a subject file that exports all the functions you wish to test. You'll need to edit the test generator to search for the right file:
+- NB: You may have to install `babel-node` globally before proceeding.
 - Create a subject file in `./lib` folder
 - Create and export the functions you wish to test
 - Open up `./util/test_generator.js`

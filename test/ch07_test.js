@@ -37,8 +37,8 @@ describe("Chapter 7 Question", function () {
   describe("7.4 #replaceAndRemove", function () {
    it("replaces and removes accurately", function () {
      let arr = ['a', 'c', 'd', 'b', 'b', 'c', 'a', 'c'];
-     replaceAndRemove(arr);
-     expect(arr).to.equal(['d', 'd', 'c', 'd', 'c', 'd', 'd', 'c']);
+     let newArr = replaceAndRemove(arr);
+     expect(newArr).to.eql(['d', 'd', 'c', 'd', 'c', 'd', 'd', 'c']);
    });
   });
 
