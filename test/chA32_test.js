@@ -22,6 +22,8 @@ describe("Chapter A32 Questions", () => {
 
   });
 
+  //TODO: Write some tests using DNA sequences and genes
+
   describe("#rabinKarp", () => {
 
     it("", function () {
