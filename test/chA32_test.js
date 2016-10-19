@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import {naiveMatch, rabinKarp,
+import {naiveMatch, rabinKarp, longestPrefix,
        finiteAutomaton, knuthMorrisPratt} from '../lib/chA32.js';
 
 describe("Chapter A32 Questions", () => {
@@ -23,6 +23,15 @@ describe("Chapter A32 Questions", () => {
   });
 
   //TODO: Write some tests using DNA sequences and genes
+
+  describe("#longestPrefix", () => {
+    it("it returns the length of the longest prefix", function () {
+      let pattern = 'abac';
+      let text = 'aabbabab';
+      let result = longestPrefix(pattern, text);
+      expect(result).to.equal(2);
+    });
+  });
 
   describe("#rabinKarp", () => {
 
