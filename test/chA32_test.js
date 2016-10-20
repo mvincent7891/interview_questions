@@ -1,7 +1,11 @@
 import { expect } from 'chai';
+import spies from 'chai-spies';
+import chai from 'chai';
 import {naiveMatch, rabinKarp, longestPrefix,
        buildStateMap,
        finiteAutomaton, knuthMorrisPratt} from '../lib/chA32.js';
+
+chai.use(spies);
 
 describe("Chapter A32 Questions", () => {
 
@@ -109,8 +113,37 @@ describe("Chapter A32 Questions", () => {
 
   describe("#finiteAutomaton", () => {
 
-    it("", function () {
+    it("calls #buildStateMap, passed in as callback parameter", () => {
+      let spy = chai.spy(buildStateMap);
+      let alphabet = ['c'];
+      let pattern = 'c';
+      let text = 'cc';
+      let result = finiteAutomaton(pattern, text, alphabet, spy);
+      expect(spy).to.have.been.called.once;
+    });
 
+    it("handles a simple case", function () {
+      let alphabet = ['a', 'b', 'c'];
+      let pattern = 'abab';
+      let text = 'cabacababcc';
+      let result = finiteAutomaton(pattern, text, alphabet, buildStateMap);
+      expect(result).to.eql([5]);
+    });
+
+    it("returns an empty array when no match is found", function () {
+      let alphabet = ['a', 'b', 'c'];
+      let pattern = 'aaaa';
+      let text = 'cabacababcc';
+      let result = finiteAutomaton(pattern, text, alphabet, buildStateMap);
+      expect(result).to.eql([]);
+    });
+
+    it("finds multiple matches for a gene in a DNA sequence", function () {
+      let alphabet = ['a', 't', 'c', 'g'];
+      let pattern = 'acgtac';
+      let text = 'acgtgacgtacacatgcatatacgtac';
+      let result = finiteAutomaton(pattern, text, alphabet, buildStateMap);
+      expect(result).to.eql([5, 21]);
     });
 
   });
