@@ -199,6 +199,14 @@ describe("Chapter A32 Questions", () => {
         expect(result).to.eql([5, 21]);
       });
 
+      it("finds matches in a large block of text", () => {
+        let alphabet = ['a', 's', 'd', 'f', 'j', 'k', 'l'];
+        let pattern = 'aajjddkk';
+        let text = 'asfasdflaklaskalskfjalsdallaksfjjalkdalalsdfkaslalakflaksdlaksflakjflalalkajlsfkjalsdkfalaskasdlfasljalsdaajjddkkaslfajsfjfjalfskdjaflasdlfkajldfakaldlfkjldfalfkasjflasjfaldkajslfkaljd'
+        let result = finiteAutomaton(pattern, text, alphabet, buildStateMap);
+        expect(result).to.eql([105]);
+      });
+
     });
   });
 
