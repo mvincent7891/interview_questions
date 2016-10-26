@@ -21,7 +21,15 @@
 // starting indices of matches.
 
 export const naiveMatch = (pattern, text) => {
-
+  let m = pattern.length;
+  let n = text.length;
+  let results = [];
+  for (let i = 0; i < (n - m); i++) {
+    if (text.slice(i, i + m) === pattern) {
+      results.push(i);
+    }
+  }
+  return results;
 };
 
 // ----------------------------- //
@@ -40,7 +48,10 @@ export const naiveMatch = (pattern, text) => {
 // from a string of digits. In practice, these digits would represent
 // the index of a character from a given alphabet.
 export const fromString = string => {
-
+  if (string.length === 1) { return parseInt(string); }
+  let m = string.length;
+  let last = parseInt(string[m - 1]);
+  return last + 10 * fromString(string.slice(0,m - 1));
 };
 
 // 32.2.2
@@ -55,7 +66,9 @@ const pows10 = {
 };
 
 export const nextNum = (current, next) => {
-
+  if (!current) { return next; } // Handles case when current is zero
+  let m = Math.floor(Math.log10(current));
+  return 10 * (current % (pows10[m])) + next;
 };
 
 // 32.2.3
@@ -64,7 +77,18 @@ export const nextNum = (current, next) => {
 // test case (integer equivalents). Then, scan the entire text,
 // updating the test case using #nextNumn, and saving results.
 export const rabinKarp = (pattern, text) => {
-
+  let m = pattern.length;
+  let n = text.length;
+  let results = [];
+  let patternInt = fromString(pattern);
+  let testCaseInt = fromString(text.slice(0, m));
+  if (patternInt === testCaseInt) { results.push(0); }
+  for (let i = m; i < n; i++) {
+    let next = parseInt(text[i]);
+    testCaseInt = nextNum(testCaseInt, next);
+    if (patternInt === testCaseInt) { results.push(i - m + 1); }
+  }
+  return results;
 };
 
 // --------------------------------- //
@@ -77,8 +101,19 @@ export const rabinKarp = (pattern, text) => {
 // suffix of some text. For instance, given pattern 'abac', and text
 // 'aabbabab', this function should return 2, because the longest prefix
 // of 'abac' that is a suffix of the text is 'ab' (length 2).
-export const longestPrefix = (pattern, text) => {
 
+export const longestPrefix = (pattern, text) => {
+  // TODO: Fix runtime of this function; these were quick fixes.
+  let len = Math.min(pattern.length, text.length);
+  for (let i = len; i; i--) {
+    let textLen = text.length;
+    let suffix = text.slice(textLen - i);
+    let prefix = pattern.slice(0, i);
+    if (suffix === prefix) {
+      return i;
+    }
+  }
+  return 0;
 };
 
 // 32.3.2
@@ -90,8 +125,22 @@ export const longestPrefix = (pattern, text) => {
 // clear, this object describes the next state, n, given some current
 // state, s, and some new character, c. See tests for precise examples.
 // Hint: you will need #longestPrefix.
-export const buildStateMap = (alphabet, pattern) => {
 
+export const buildStateMap = (alphabet, pattern) => {
+  // TODO: Fix runtime of this function; these were quick fixes.
+  let stateMap = {};
+  for (let i = 0; i < pattern.length; i++) {
+    stateMap[i] = {};
+  }
+  for (let i = 0; i < pattern.length; i++) {
+    let current = pattern.slice(0,i);
+    for (let char of alphabet) {
+      let text = `${current}${char}`;
+      let nextState = longestPrefix(pattern, text);
+      stateMap[i][char] = nextState;
+    }
+  }
+  return stateMap;
 };
 
 // 32.3.3
@@ -99,7 +148,19 @@ export const buildStateMap = (alphabet, pattern) => {
 // alphabet, and callback (used in place of #buildStateMap). Excluding
 // building the state map, this method should run in O(n) time.
 export const finiteAutomaton = (pattern, text, alphabet, callback) => {
-
+  let map = callback(alphabet, pattern);
+  let n = text.length;
+  let m = pattern.length;
+  let state = 0;
+  let results = [];
+  for (let i = 0; i < n; i++) {
+    state = map[state][text[i]];
+    if (state === pattern.length) {
+      results.push(i - m + 1);
+      state = 0;
+    }
+  }
+  return results;
 };
 
 // ----------------------------------- //
@@ -118,7 +179,15 @@ export const finiteAutomaton = (pattern, text, alphabet, callback) => {
 
 // Hint: Use #longestPrefix from above.
 export const buildKMPMap = (pattern) => {
-
+  // TODO: Fix runtime of this function; these were quick fixes.
+  let map = {1: 0};
+  let m = pattern.length;
+  for (let q = 2; q <= m; q++) {
+    let matched = pattern.slice(0, q);
+    let theRest = pattern.slice(1, q);
+    map[q] = longestPrefix(matched, theRest);
+  }
+  return map;
 };
 
 // 32.4.2
@@ -127,5 +196,26 @@ export const buildKMPMap = (pattern) => {
 // you must check if the character that caused you to decrement state
 // is now a match.
 export const knuthMorrisPratt = (pattern, text) => {
-
+  let results = [];
+  let n = text.length;
+  let m = pattern.length;
+  let map = buildKMPMap(pattern);
+  let q = 0;
+  for (let i = 1; i <= n; i++) {
+    // Keep decrementing q until q === 0 or we have a match
+    // NB: Take time to understand this while loop
+    while (q > 0 && pattern[q] !== text[i - 1]) {
+      q = map[q];
+    }
+    // The current characters match, so increment state
+    if (pattern[q] === text[i - 1]) {
+      q += 1;
+    }
+    // There's a match at (i - m)
+    if (q === m) {
+      results.push(i - m);
+      q = map[q];
+    }
+  }
+  return results;
 };

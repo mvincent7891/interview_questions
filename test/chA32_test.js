@@ -4,7 +4,8 @@ import chai from 'chai';
 import {naiveMatch, rabinKarp,
        fromString, nextNum,
        longestPrefix, buildStateMap,
-       finiteAutomaton, knuthMorrisPratt} from '../lib/chA32.js';
+       finiteAutomaton, buildKMPMap,
+       knuthMorrisPratt} from '../lib/chA32.js';
 
 chai.use(spies);
 
@@ -202,7 +203,7 @@ describe("Chapter A32 Questions", () => {
       it("finds matches in a large block of text", () => {
         let alphabet = ['a', 's', 'd', 'f', 'j', 'k', 'l'];
         let pattern = 'aajjddkk';
-        let text = 'asfasdflaklaskalskfjalsdallaksfjjalkdalalsdfkaslalakflaksdlaksflakjflalalkajlsfkjalsdkfalaskasdlfasljalsdaajjddkkaslfajsfjfjalfskdjaflasdlfkajldfakaldlfkjldfalfkasjflasjfaldkajslfkaljd'
+        let text = 'asfasdflaklaskalskfjalsdallaksfjjalkdalalsdfkaslalakflaksdlaksflakjflalalkajlsfkjalsdkfalaskasdlfasljalsdaajjddkkaslfajsfjfjalfskdjaflasdlfkajldfakaldlfkjldfalfkasjflasjfaldkajslfkaljd';
         let result = finiteAutomaton(pattern, text, alphabet, buildStateMap);
         expect(result).to.eql([105]);
       });
@@ -212,10 +213,61 @@ describe("Chapter A32 Questions", () => {
 
 
   describe("Knuth-Morris-Pratt:", () => {
+    describe("#buildKMPMap", () => {
+
+      it("handles a simples case", function () {
+        let pattern = 'abab';
+        let result = buildKMPMap(pattern);
+        const expected = {
+          1: 0, 2: 0, 3: 1, 4: 2
+        };
+        expect(result).to.eql(expected);
+      });
+
+      it("handles a more complicated case", function () {
+        let pattern = 'ababababca';
+        let result = buildKMPMap(pattern);
+        const expected = {
+          1: 0, 2: 0, 3: 1, 4: 2, 5: 3,
+          6: 4, 7: 5, 8: 6, 9: 0, 10: 1
+        };
+        expect(result).to.eql(expected);
+      });
+
+    });
+
     describe("#knuthMorrisPratt", () => {
 
-      it("", function () {
+      it("handles a simple case", function () {
+        let alphabet = ['a', 'b', 'c'];
+        let pattern = 'abab';
+        let text = 'cabacababcc';
+        let result = knuthMorrisPratt(pattern, text);
+        expect(result).to.eql([5]);
+      });
 
+      it("returns an empty array when no match is found", function () {
+        let alphabet = ['a', 'b', 'c'];
+        let pattern = 'aaaa';
+        let text = 'cabacababcc';
+        let result = knuthMorrisPratt(pattern, text);
+        expect(result).to.eql([]);
+      });
+
+      it("finds multiple matches for a gene in a DNA sequence", function () {
+        let alphabet = ['a', 't', 'c', 'g'];
+        let pattern = 'acgtac';
+        let text = 'acgtgacgtacacatgcatatacgtac';
+        let result = knuthMorrisPratt(pattern, text);
+        expect(result).to.eql([5, 21]);
+      });
+
+      it("finds matches in a large block of text", () => {
+        let alphabet = ['a', 's', 'd', 'f', 'j', 'k', 'l'];
+        let pattern = 'aajjddkk';
+        let text = 'asfasdflaklaskalskfjalsdallaksfjjalkdalalsdfkaslalakflaksdlaksflakjflalalkajlsfkjalsdkfalaskasdlfasljalsdaajjddkkaslfajsfjfjalfskdjaflasdlfkajldfakaldlfkjldfalfkasjflasjfaldkajslfkaljd';
+        let result = knuthMorrisPratt(pattern, text);
+        expect(result).to.eql([105]);
       });
 
     });
