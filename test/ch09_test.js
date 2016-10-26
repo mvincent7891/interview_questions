@@ -13,11 +13,11 @@ describe("Chapter 9 Questions", function () {
     });
 
     it("works with a single number", function () {
-      expect(evalRPN(172)).to.equal(172);
+      expect(evalRPN('172')).to.equal(172);
     });
 
     it("works with division and negative numbers", function () {
-      let result = evalRPN('-672,6,/,28,/').to.equal(4);
+      let result = evalRPN('-672,6,/,28,/');
       expect(result).to.equal(-4);
     });
 
