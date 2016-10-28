@@ -23,7 +23,7 @@ $ npm test ./test/ch12_test.js
 ```
 
 ### Automate Test Creation
-The tests in this repo were generated automatically with `./util/test_generator.js`. You can use it by creating a subject file that exports all the functions you wish to test. You'll need to edit the test generator to search for the right file:
+Test skeletons were generated automatically with `./util/test_generator.js`. You can use it by creating a subject file that exports all the functions you wish to test. You'll need to edit the test generator to search for the right file:
 - NB: You may have to install `babel-node` globally before proceeding.
 - Create a subject file in `./lib` folder
 - Create and export the functions you wish to test
@@ -37,5 +37,6 @@ $ babel-node ./util/test_generator.js
 - You'll find your new test file in the `./test` folder. Just uncomment the body and you're ready to write tests!
 
 ### Problem Sources
-- Problems in `ch##.js` files are sourced from Elements of Programming Interviews
-- Problems in `chA#.js` files are sourced from Introduction to Algorithms (Cormen)
+- Problems in `ch_.js` files are sourced from Elements of Programming Interviews
+- Problems in `chA_.js` files are sourced from Introduction to Algorithms (Cormen)
+- Problems in `cci_.js` files are sourced from Cracking the Coding Interview
