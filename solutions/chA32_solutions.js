@@ -180,7 +180,7 @@ export const finiteAutomaton = (pattern, text, alphabet, callback) => {
 // Hint: Use #longestPrefix from above.
 export const buildKMPMap = (pattern) => {
   // TODO: Fix runtime of this function; these were quick fixes.
-  let map = {1: 0};
+  let map = { 1: 0 };
   let m = pattern.length;
   for (let q = 2; q <= m; q++) {
     let matched = pattern.slice(0, q);
@@ -192,8 +192,8 @@ export const buildKMPMap = (pattern) => {
 
 // 32.4.2
 // Finally, build a KMP matcher, similar to the finite automaton matcher
-// above. NB: Take care that each time you change state due to a mismach,
-// you must check if the character that caused you to decrement state
+// above. NB: Take care that each time you change state due to a mismach
+// you check if the character that caused you to decrement state
 // is now a match.
 export const knuthMorrisPratt = (pattern, text) => {
   let results = [];
@@ -201,13 +201,13 @@ export const knuthMorrisPratt = (pattern, text) => {
   let m = pattern.length;
   let map = buildKMPMap(pattern);
   let q = 0;
-  for (let i = 1; i <= n; i++) {
-    // Keep decrementing q until q === 0 or we have a match
+  for (let i = 1; i <= n; i++) {    
+    // Keep decrementing q until q === 0 or we have a matching character
     // NB: Take time to understand this while loop
     while (q > 0 && pattern[q] !== text[i - 1]) {
       q = map[q];
     }
-    // The current characters match, so increment state
+    // If the current characters match, increment state
     if (pattern[q] === text[i - 1]) {
       q += 1;
     }
